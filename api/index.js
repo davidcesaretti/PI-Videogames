@@ -19,10 +19,13 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-
+const {getVideogames, getGenre} = require('./src/cargaDb/cargaDb')
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
+  console.log('Connecting to Db')
   server.listen(3001, () => {
+    getVideogames()
+    getGenre()
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
