@@ -7,12 +7,7 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-    },/* 
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false
-    }, */
+    },
     image: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -20,11 +15,11 @@ module.exports = (sequelize) => {
     api:{
       type: DataTypes.INTEGER,
       allowNull: true
-    },
+    },/* 
     genre: {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true
-    },
+    }, */
     description: {
       type: DataTypes.TEXT,
       allowNull: true,

@@ -7,18 +7,16 @@ const getVideogames = async () => {
     let url = `${BASE_URL}${API_KEY}`
     try{
         for (let i = 0; i < 5; i++){
-            let apiVideogames = await axios.get(url);/* 
-            console.log(apiVideogames.data.results[0].name) */
+            let apiVideogames = await axios.get(url);
             apiArray = apiArray.concat(apiVideogames.data.results)
             url = apiVideogames.data.next
         }
     for (let i = 0; i < apiArray.length; i++){
-        console.log(apiArray[i].name)
         await Videogame.findOrCreate({
             where: {
                 name: apiArray[i].name.toLowerCase(),
-                api: apiArray[i].id,
-                genre: apiArray[i].genres.map((e) => {return e.name}),
+                api: apiArray[i].id,/* 
+                genre: apiArray[i].genres.map((e) => {return e.name}), */
                 image: apiArray[i].background_image,
                 release_date: apiArray[i].released,
                 rating: apiArray[i].rating,

@@ -1,13 +1,8 @@
 const { Videogame, Genre, VideoGenre } = require('../db');
 const axios = require('axios');
 const {Op} = require('sequelize');
-const db = require('../db');
 const {BASE_URL, API_KEY} = process.env
 
-/* const request = async () => {
-    const api = await axios.get(`${BASE_URL}${API_KEY}`);
-    return api.data
-} */
 
 const getVideogames = async (req, res) => {
     const game = req.query.game;
@@ -64,19 +59,21 @@ const getById = async (req, res) => {
 }
 
 const postVideogame = async (req, res) => {
-    const { name, rating, platforms, image } = req.body;
+    const { name, rating, platforms, description, image, genreId } = req.body;
     console.log(req.body)
     try{
-        let dbGame = await Videogame.findOrCreate({
-            where: {
+        let dbGame = await Videogame.create({
                 name: name,
+                description: description,
                 image: image,
                 rating: rating,
-                platforms: platforms, 
+                platforms: platforms,
                 mine: true,
-            }
         })
-        /* await dbGame.setGenres(genreId) */
+        /* for (let i = 0; i < genreId.length; i++){
+            await dbGame.addGenre(genreId[i])
+        } */
+        await dbGame.setGenres(genreId)
         return res.json(dbGame)
     } catch (error){
         console.log(error)
