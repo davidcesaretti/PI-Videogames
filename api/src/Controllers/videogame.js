@@ -49,7 +49,7 @@ const getById = async (req, res) => {
     console.log(id)
     const dbGame = await Videogame.findByPk(id)
     if (dbGame.mine) {
-        res.send(dbGame) 
+        res.send(dbGame)
     } else {
         const api = dbGame.api
         const apiGame = await axios.get(`${BASE_URL}/${api}${API_KEY}`)
@@ -70,9 +70,6 @@ const postVideogame = async (req, res) => {
                 platforms: platforms,
                 mine: true,
         })
-        /* for (let i = 0; i < genreId.length; i++){
-            await dbGame.addGenre(genreId[i])
-        } */
         await dbGame.setGenres(genreId)
         return res.json(dbGame)
     } catch (error){
