@@ -9,23 +9,21 @@ import {getVideogames} from '../../actions/index'
 export default function Home () {
     const dispatch = useDispatch()
     const videogames = useSelector(state => state.videogames)
-    const [page, setPage] = useState(0)
     const [orderBy, setOrderBy] = useState('name');
     const [order, setOrder] = useState('ASC')
 
     useEffect(() => {
-        dispatch(getVideogames(page, orderBy, order))
+        dispatch(getVideogames(orderBy, order))
         console.log('despachando')
-    }, [dispatch, page, orderBy, order])
+    }, [dispatch, orderBy, order])
 
-    console.log(videogames)
 
     const handleClick = (e) => {
         e.preventDefault()
-        dispatch(getVideogames(page, orderBy, order))
+        dispatch(getVideogames(orderBy, order))
     }
 
-    const prev = (e) => {
+    /* const prev = (e) => {
         e.preventDefault()
         if (page <= 0) {
             setPage(0)
@@ -41,7 +39,7 @@ export default function Home () {
         } else {
             setPage(page + 15)
         }
-    }
+    } */
 
     const changeOrder = (e) => {
         e.preventDefault()
@@ -56,9 +54,6 @@ export default function Home () {
     return (
         <div>
             <NavLink to='/create'>Crear Videojuego</NavLink>
-            <button onClick={(e) => {
-                handleClick(e)
-            }}>HOME</button>
 
             <SearchBar />
 
@@ -79,22 +74,25 @@ export default function Home () {
                     <option value='DESC'>Descendente</option>
                 </select>
             </div>
-            
-            {videogames?.map((e) => {
+            {videogames ? videogames.map((e) => {
                 return (
-                    <fragment>
-                        <NavLink to={`/videogames/${e.id}`}>
-                            <Card name={e.name} image={e.image} key={e.id} />
+                        <NavLink to={`/videogames/${e.id}`} key={e.id}>
+                            <Card 
+                                name={e.name} 
+                                image={e.image} 
+                                genre={e.genre}
+                                key={e.id} />
                         </NavLink>
-                    </fragment>
-                )
-            })}
-            <button onClick={(e) => {prev(e)}}>
+                        )
+                    }) : 
+                <img src='https://i.pinimg.com/originals/0f/85/75/0f85751bdd6ab068180057ec4638637b.gif' alt='img not found' />
+            }
+            {/* <button onClick={(e) => {prev(e)}}>
                 {'<---Prev'}
             </button>
             <button onClick={(e) => {next(e)}}>
                 {'Next--->'}
-            </button>
+            </button> */}
         </div>
     )
 }

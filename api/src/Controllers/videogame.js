@@ -19,8 +19,6 @@ const getVideogames = async (req, res) => {
                 attributes: {
                     exclude: ['createdAt', 'updatedAt', 'api']
                 },
-                limit: 15,
-                offset: req.query.page,
                 order: [[req.query.orderBy, req.query.order]]
             })
             return res.send(videogames)
@@ -33,8 +31,9 @@ const getVideogames = async (req, res) => {
                 attributes: {
                     exclude: ['createdAt', 'updatedAt', 'api']
                 },
-                limit: 15,
-                offset: req.query.page,
+                include: {
+                    model: Genre,
+                },
                 order: [[req.query.orderBy, req.query.order]]
             })
             return res.send(videogames)
