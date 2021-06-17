@@ -1,4 +1,6 @@
 import React from 'react'
+import styled from 'styled-components'
+
 
 export default function Card ({name, image, genre}) {
     return (

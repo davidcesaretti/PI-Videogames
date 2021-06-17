@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 import {getVideogames} from '../../actions/index'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
@@ -22,4 +22,4 @@ export default function SearchBar () {
                 <button onClick={(e) => {handleClick(e)}}>Search</button>
         </div>
     )
-}
+} */

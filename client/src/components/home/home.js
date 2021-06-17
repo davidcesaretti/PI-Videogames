@@ -4,13 +4,17 @@ import {useDispatch, useSelector} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import Card from '../card/card'
 import SearchBar from '../searchBar/searchBar'
-import {getVideogames} from '../../actions/index'
+import {getVideogames, getVideogamesByName} from '../../actions/index'
+import './home.css'
+import styled from 'styled-components'
 
 export default function Home () {
     const dispatch = useDispatch()
     const videogames = useSelector(state => state.videogames)
     const [orderBy, setOrderBy] = useState('name');
     const [order, setOrder] = useState('ASC')
+    const [name, setName] = useState('')
+
 
     useEffect(() => {
         dispatch(getVideogames(orderBy, order))
@@ -20,7 +24,12 @@ export default function Home () {
 
     const handleClick = (e) => {
         e.preventDefault()
-        dispatch(getVideogames(orderBy, order))
+        dispatch(getVideogames(orderBy, order, name))
+    }
+
+    const handleInputChange = (e) => {
+        e.preventDefault()
+        setName(e.target.value)
     }
 
     /* const prev = (e) => {
@@ -52,10 +61,12 @@ export default function Home () {
     }
 
     return (
-        <div>
+        <div className='background'>
+            <div>
+                <input type="text" placeholder="Search" onChange={(e) => {handleInputChange(e)}} />
+                <button onClick={(e) => {handleClick(e)}}>Search</button>
+            </div>
             <NavLink to='/create'>Crear Videojuego</NavLink>
-
-            <SearchBar />
 
             <div>
                 <h5>Ordenar por</h5>

@@ -2,7 +2,7 @@ import {GET_VIDEOGAMES, GET_DETAIL, CREATE_VIDEOGAME} from '../actions/index'
 
 const initialState = {
     videogames: [],
-    detail: []
+    detail: {}
 }
 
 export function rootReducer(state = initialState, action){
