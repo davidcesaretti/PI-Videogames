@@ -2,11 +2,11 @@ import axios from 'axios';
 export const GET_VIDEOGAMES = 'GET_VIDEOGAMES'
 export const GET_DETAIL = 'GET_DETAIL'
 export const CREATE_VIDEOGAME = 'CREATE_VIDEOGAME'
+export const GET_GENRES = 'GET_GENRES'
 
 export function getVideogames (orderBy, order, name) {
     return async function (dispatch) {
         try {
-        console.log(name)
         if (name) {
             const gamesNamed = await axios.get(`http://localhost:3001/videogames?game=${name}&orderBy=${orderBy}&order=${order}`)
             console.log(gamesNamed.data)
@@ -28,6 +28,20 @@ export function getVideogames (orderBy, order, name) {
     }
 }
 
+export function getGenres() {
+    return async function(dispatch) {
+        try {
+            const genres = await axios.get(`http://localhost:3001/genres`)
+            dispatch({
+                type: GET_GENRES,
+                payload: genres.data
+            })
+        } catch(error) {
+            console.log(error)
+        }
+    }
+}
+
 export function getDetail (id) {
     return async function (dispatch) {
         try {
@@ -37,6 +51,19 @@ export function getDetail (id) {
                 type: GET_DETAIL,
                 payload: gameDetail.data
             })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function createGame (game) {
+    console.log("VIDEOGAME: ", game);
+        return async function () {
+        try{
+            console.log('este es el body de mi form ' + game)
+            const newGame = await axios.post("http://localhost:3001/videogames/post", {game})
+            console.log(newGame)
         } catch (error) {
             console.log(error)
         }

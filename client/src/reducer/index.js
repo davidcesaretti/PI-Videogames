@@ -1,8 +1,10 @@
-import {GET_VIDEOGAMES, GET_DETAIL, CREATE_VIDEOGAME} from '../actions/index'
+import {GET_VIDEOGAMES, GET_DETAIL, CREATE_VIDEOGAME, GET_GENRES} from '../actions/index'
 
 const initialState = {
     videogames: [],
-    detail: {}
+    detail: {},
+    genres: [],
+    created: []
 }
 
 export function rootReducer(state = initialState, action){
@@ -18,6 +20,18 @@ export function rootReducer(state = initialState, action){
             return {
                 ...state,
                 detail: action.payload
+            }
+        }
+        case GET_GENRES: {
+            return {
+                ...state,
+                genres: action.payload
+            }
+        }
+        case CREATE_VIDEOGAME: {
+            return {
+                ...state,
+                created: action.payload
             }
         }
         default: {

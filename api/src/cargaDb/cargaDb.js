@@ -37,7 +37,6 @@ const getGenre = async () => {
             await Genre.findOrCreate({
                 where: {
                     name: apiGenres.data.results[i].name,
-                    id: apiGenres.data.results[i].id
                 }
             })
         }

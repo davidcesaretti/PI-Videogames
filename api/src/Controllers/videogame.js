@@ -16,6 +16,9 @@ const getVideogames = async (req, res) => {
                         [Op.like]: '%'+game+'%'
                     }
                 },
+                include: {
+                    model: Genre,
+                },
                 attributes: {
                     exclude: ['createdAt', 'updatedAt', 'api']
                 },
@@ -46,7 +49,14 @@ const getVideogames = async (req, res) => {
 const getById = async (req, res) => {
     const id = req.params.id;
     console.log(id)
-    const dbGame = await Videogame.findByPk(id)
+    const dbGame = await Videogame.findOne({
+        where: {
+            id: id
+        },
+        include: {
+            model: Genre,
+        },
+    })
     if (dbGame.mine) {
         res.send(dbGame)
     } else {
@@ -57,9 +67,18 @@ const getById = async (req, res) => {
     }
 }
 
+const getGenres = async (req, res) => {
+    try{
+        const genres = await Genre.findAll()
+        res.send(genres)
+    } catch (error) {
+        console.log(error)
+}
+}
+
 const postVideogame = async (req, res) => {
-    const { name, rating, platforms, description, image, genreId } = req.body;
-    console.log(req.body)
+    console.log("BODY EN BACK", req.body);
+    const { name, rating, platforms, description, image, genres } = req.body;
     try{
         let dbGame = await Videogame.create({
                 name: name,
@@ -69,7 +88,7 @@ const postVideogame = async (req, res) => {
                 platforms: platforms,
                 mine: true,
         })
-        await dbGame.setGenres(genreId)
+        await dbGame.setGenres(genres)
         return res.json(dbGame)
     } catch (error){
         console.log(error)
@@ -79,5 +98,6 @@ const postVideogame = async (req, res) => {
 module.exports = {
     getVideogames,
     getById,
-    postVideogame
+    postVideogame,
+    getGenres
 }
