@@ -63,8 +63,8 @@ export default function Form () {
         setPlatforms([])
         setGenres([])
 
-        alert('Your game was created successfully!')/* 
-        history.push('/videogames') */
+        alert('Your game was created successfully!')
+        history.push('/videogames')
     }
 
     const handleName = (e) => {

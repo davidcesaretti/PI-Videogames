@@ -14,7 +14,7 @@ const getVideogames = async () => {
     for (let i = 0; i < apiArray.length; i++){
         await Videogame.findOrCreate({
             where: {
-                name: apiArray[i].name.toLowerCase(),
+                name: apiArray[i].name,
                 api: apiArray[i].id,
                 genre: apiArray[i].genres.map((e) => {return e.name}),
                 image: apiArray[i].background_image,

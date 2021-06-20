@@ -1,13 +1,24 @@
 import React from 'react'
-import styled from 'styled-components'
+import './card.css'
 
 
-export default function Card ({name, image, genre}) {
+export default function Card ({name, image, genre, genres}) {
+    console.log(genre)
+    console.log(genres)
     return (
-        <div>
-            <h5>{name}</h5>
-            <img src={image} alt='img not found' width='200px' height='200px' />
-            <h5>{genre}</h5>
+        <div className='card'>
+            <h5 className='title'>{name}</h5>
+            <img className='image' src={image} alt='img not found'/>
+            <div className='ctn-genres'>
+                {genre ? genre.map((e) => (
+                    <h6 className='genres'>{`${e} `} </h6>
+                    ))
+                :
+                genres.map((e) => (
+                    <h6 className='genres'>{`${e.name} `} </h6>
+                    ))
+                }
+            </div>
         </div>
     )
 }

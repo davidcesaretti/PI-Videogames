@@ -62,7 +62,7 @@ export function createGame (game) {
         return async function () {
         try{
             console.log('este es el body de mi form ' + game)
-            const newGame = await axios.post("http://localhost:3001/videogames/post", {game})
+            const newGame = await axios.post("http://localhost:3001/videogames/post", game)
             console.log(newGame)
         } catch (error) {
             console.log(error)

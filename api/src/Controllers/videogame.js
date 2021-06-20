@@ -13,7 +13,7 @@ const getVideogames = async (req, res) => {
             let videogames = await Videogame.findAll({
                 where: {
                     name: {
-                        [Op.like]: '%'+game+'%'
+                        [Op.like]: '%'+game+'%'.toLocaleLowerCase()
                     }
                 },
                 include: {

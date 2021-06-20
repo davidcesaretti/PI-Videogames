@@ -1,7 +1,157 @@
 
 .background {
+    width: 100%;
+    height: 100%;
     /* background: url('https://i.pinimg.com/originals/66/c4/6f/66c46f0b10f5a1b9cb2c4e49f19b5a17.jpg')
-    center no-repeat; */
-    background: rgb(58,2,75);
-    background: linear-gradient(0deg, rgba(58,2,75,1) 0%, rgba(3,0,18,1) 100%); 
+    center no-repeat; */background: rgb(0,0,0);
+background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(23,23,23,1) 23%, rgba(184,184,184,1) 52%, rgba(0,0,0,1) 81%, rgba(0,0,0,1) 100%);
+}
+.navBar{
+    display:flex;
+    width:100%;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    background: url("https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80");
+    backdrop-filter: blur(50px);
+}
+.searchBar{
+    display: flex;
+    width: 500px;
+    justify-content: center;
+    border: solid 1px #000000;
+    border-radius: 20px;
+}
+.inputSearch{
+    height:25px;
+    width: 400px;
+    border: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.buttonSearch{
+    height:27px;
+    width: 100px;
+    border: none;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+}
+.create{
+    width: 140px;
+    padding:8px;
+    position: absolute;
+    top: 30px;
+    right: 250px;
+    border-radius: 10px;
+    background-color: #fff;
+    text-decoration: none;
+    color:#000000;
+}
+.ctn-orders{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 50px;
+    color: #FFF;
+    border-bottom: solid 1px #fff;
+    padding: 10px;
+}
+h5{
+    font-size: 20px;
+}
+.orderBy{
+    width: 200px;
+    padding: 0px 20px;
+    margin-right: 30px;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+.order{
+    width: 200px;
+    padding: 0px 20px;
+    margin-left: 30px;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+.orderName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inputOrder{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: none;
+}
+.options{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.buttonPag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.prevButton{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: none;
+    width: 150px;
+    font-size: 90px;
+    color: #000000;
+    cursor: pointer;
+}
+.prevButton:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #FFF;
+}
+.nextButton{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: none;
+    width: 150px;
+    font-size: 90px;
+    color: #000000;
+    cursor: pointer;
+}
+.nextButton:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #FFF;
+}
+.cards {
+    width: 80%;
+    margin:auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 18px;
+    padding: 15px;
+}
+
+.link{
+    text-decoration: none;
+    height: 390px;
+    width: 280px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-right: 50px;
+    margin-left: 40px;
+}
+
+.card {
 }

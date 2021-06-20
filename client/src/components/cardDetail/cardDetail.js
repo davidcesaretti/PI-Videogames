@@ -22,7 +22,9 @@ export default function CardDetail (props) {
             <p>{game.released}</p>
             <h5>{game.rating}</h5>
             {game.platforms?.map(e =>
-                <h5>{e.platform.name}</h5>
+                game.mine ? 
+                <h5>{e}</h5>
+                : <h5>{e.platform.name}</h5>
             )}
         </div>
     )

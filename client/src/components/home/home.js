@@ -21,9 +21,8 @@ export default function Home () {
         console.log('despachando')
     }, [dispatch, orderBy, order])
 
-    const filteredGames = () => {
-        return videogames.slice(currentPage, currentPage + 15)
-    }
+    const filteredGames = videogames.slice(currentPage, currentPage + 15)
+    
 
     const nextPage = () => {
         if (videogames.length < currentPage + 15) {
@@ -45,6 +44,7 @@ export default function Home () {
         e.preventDefault()
         setCurrentPage(0)
         dispatch(getVideogames(orderBy, order, name))
+        setName('')
     }
 
     const handleInputChange = (e) => {
@@ -64,52 +64,63 @@ export default function Home () {
 
     return (
         <div className='background'>
-            <div>
-                <input type="text" placeholder="Search" onChange={(e) => {handleInputChange(e)}} />
-                <button onClick={(e) => {handleClick(e)}}>Search</button>
+            <div className='navBar'>
+                <div className='searchBar'>
+                    <input className='inputSearch' type="text" placeholder="Search" onChange={(e) => {handleInputChange(e)}} />
+                    <button className='buttonSearch' onClick={(e) => {handleClick(e)}}>Search</button>
+                </div>
+                <div className='create'>
+                <NavLink to='/create'>Crear Videojuego</NavLink>
+                </div>
             </div>
-            <NavLink to='/create'>Crear Videojuego</NavLink>
-
-            <div>
-                <h5>Ordenar por</h5>
-                <select onChange={(e) => {
-                    changeOrderBy(e)
-                }}>
-                    <option value='name'>Name</option>
-                    <option value='rating'>Rating</option>
-                </select>
-
-                <h5>Ordenar de forma</h5>
-                <select onChange={(e) => {
-                    changeOrder(e)
-                }}>
-                    <option value='ASC'>Ascendente</option>
-                    <option value='DESC'>Descendente</option>
-                </select>
+            <div className='ctn-orders'>
+                <div className='orderBy'>
+                    <h5 className='orderName'>Ordenar por</h5>
+                    <select className='inputOrder' onChange={(e) => {
+                        changeOrderBy(e)
+                    }}>
+                        <option className='options' value='name'>Name</option>
+                        <option className='options' value='rating'>Rating</option>
+                    </select>
+                </div>
+                <div className='order'>
+                    <h5 className='orderName'>De forma</h5>
+                    <select className='inputOrder' onChange={(e) => {
+                        changeOrder(e)
+                    }}>
+                        <option className='options' value='ASC'>Ascendente</option>
+                        <option className='options' value='DESC'>Descendente</option>
+                    </select>
+                </div>
             </div>
-            <button
-                onClick={ prevPage }
-            >
-                {'<---Prev'}
-            </button>
-            <button
-                onClick={ nextPage }
-            >
-                {'Next--->'}
-            </button>
-            {videogames ? filteredGames().map((e) => {
-                return (
-                        <NavLink to={`/videogames/${e.id}`} key={e.id}>
-                            <Card
-                                name={e.name}
-                                image={e.image}
-                                genre={e.genre}
-                                key={e.id} />
-                        </NavLink>
-                        )
-                    }) :
-                <img src='https://i.pinimg.com/originals/0f/85/75/0f85751bdd6ab068180057ec4638637b.gif' alt='img not found' />
+            
+            <div className='cards'>
+            {filteredGames?.map((e) => (
+                            <NavLink className='link' to={`/videogames/${e.id}`} key={e.id}>
+                                <Card className='card'
+                                    name={e.name}
+                                    image={e.image}
+                                    genre={e.genre}
+                                    genres={e.genres}
+                                    key={e.id} />
+                            </NavLink>
+                            ))
             }
+            </div>
+            <div className='buttonPag'>
+                <button
+                    className='prevButton'
+                    onClick={ prevPage }
+                >
+                    {'<'}
+                </button>
+                <button
+                    className='nextButton'
+                    onClick={ nextPage }
+                >
+                    {'>'}
+                </button>
+            </div>
         </div>
     )
 }
