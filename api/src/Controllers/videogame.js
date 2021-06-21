@@ -78,14 +78,16 @@ const getGenres = async (req, res) => {
 
 const postVideogame = async (req, res) => {
     console.log("BODY EN BACK", req.body);
-    const { name, rating, platforms, description, image, genres } = req.body;
+    const { name, rating, platforms, description, image, genres, release_date } = req.body;
     try{
+        console.log(release_date)
         let dbGame = await Videogame.create({
                 name: name,
                 description: description,
                 image: image,
                 rating: rating,
                 platforms: platforms,
+                release_date: release_date,
                 mine: true,
         })
         await dbGame.setGenres(genres)

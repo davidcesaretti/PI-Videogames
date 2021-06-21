@@ -46,7 +46,7 @@ export default function Form () {
             description: description,
             image: image,
             rating: rating,
-            released: released,
+            release_date: released,
             platforms: platforms,
             genres: genres
         }

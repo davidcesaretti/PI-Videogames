@@ -4,12 +4,18 @@ export const GET_DETAIL = 'GET_DETAIL'
 export const CREATE_VIDEOGAME = 'CREATE_VIDEOGAME'
 export const GET_GENRES = 'GET_GENRES'
 
-export function getVideogames (orderBy, order, name) {
+export function getVideogames (orderBy, order, name, filter) {
     return async function (dispatch) {
         try {
+        if (orderBy === 'default') orderBy = 'id'
         if (name) {
             const gamesNamed = await axios.get(`http://localhost:3001/videogames?game=${name}&orderBy=${orderBy}&order=${order}`)
             console.log(gamesNamed.data)
+            /* if (filter !== 'default'){
+                const filtrados = gamesNamed.data.filter((e) => {
+                    e === 
+                })
+            } */
             dispatch ({
                 type: GET_VIDEOGAMES,
                 payload: gamesNamed.data
@@ -58,12 +64,9 @@ export function getDetail (id) {
 }
 
 export function createGame (game) {
-    console.log("VIDEOGAME: ", game);
         return async function () {
         try{
-            console.log('este es el body de mi form ' + game)
-            const newGame = await axios.post("http://localhost:3001/videogames/post", game)
-            console.log(newGame)
+            await axios.post("http://localhost:3001/videogames/post", game)
         } catch (error) {
             console.log(error)
         }

@@ -3,18 +3,23 @@ import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import Card from '../card/card'
-import {getVideogames} from '../../actions/index'
+import {getVideogames, getGenres, filters} from '../../actions/index'
 import './home.css'
-import styled from 'styled-components'
+import logo from '../../img/image2.png'
 
 export default function Home () {
     const dispatch = useDispatch();
     const videogames = useSelector(state => state.videogames);
-    const [orderBy, setOrderBy] = useState('name');
+    const dbGenres = useSelector(state => state.genres)
+    const [orderBy, setOrderBy] = useState('default');
     const [order, setOrder] = useState('ASC');
     const [name, setName] = useState('');
+    const [filter, setFilter] = useState('All')
     const [currentPage, setCurrentPage] = useState(0);
 
+    useEffect(() => {
+        dispatch(getGenres())
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(getVideogames(orderBy, order))
@@ -48,29 +53,35 @@ export default function Home () {
     }
 
     const handleInputChange = (e) => {
-        e.preventDefault()
         setName(e.target.value)
     }
 
     const changeOrder = (e) => {
-        e.preventDefault()
         setOrder(e.target.value)
     }
 
     const changeOrderBy = (e) => {
-        e.preventDefault()
         setOrderBy(e.target.value)
+    }
+
+    const changeFilter = (e) => {
+        setFilter(e.target.value)
     }
 
     return (
         <div className='background'>
+                <div>
+                    <NavLink className='rechargeHome' to='/videogames'>
+                        <img className='logo' src={logo} alt='logo not found' />
+                    </NavLink>
+                </div>
             <div className='navBar'>
                 <div className='searchBar'>
                     <input className='inputSearch' type="text" placeholder="Search" onChange={(e) => {handleInputChange(e)}} />
                     <button className='buttonSearch' onClick={(e) => {handleClick(e)}}>Search</button>
                 </div>
                 <div className='create'>
-                <NavLink to='/create'>Crear Videojuego</NavLink>
+                <NavLink className='createLink' to='/create'>Crear Videojuego</NavLink>
                 </div>
             </div>
             <div className='ctn-orders'>
@@ -79,6 +90,7 @@ export default function Home () {
                     <select className='inputOrder' onChange={(e) => {
                         changeOrderBy(e)
                     }}>
+                        <option className='options' value='default'>Default</option>
                         <option className='options' value='name'>Name</option>
                         <option className='options' value='rating'>Rating</option>
                     </select>
@@ -92,8 +104,28 @@ export default function Home () {
                         <option className='options' value='DESC'>Descendente</option>
                     </select>
                 </div>
+                <div className='filter'>
+                    <h5 className='orderName'>Filtro origen</h5>
+                    <select className='inputOrder' onChange={(e) => {
+                        changeFilter(e)
+                    }}>
+                        <option className='options' value=''>All</option>
+                        <option className='options' value='creados'>Creados</option>
+                        <option className='options' value='api'>Api</option>
+                    </select>
+                </div>
+                <div className='filter'>
+                    <h5 className='orderName'>Filtro genero</h5>
+                    <select className='inputOrder' onChange={(e) => {
+                        changeFilter(e)
+                    }}>
+                        <option className='options' value=''>All</option>
+                        {dbGenres?.map((e) => (
+                            <option className='options' value={e.name}>{`${e.name}`}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
-            
             <div className='cards'>
             {filteredGames?.map((e) => (
                             <NavLink className='link' to={`/videogames/${e.id}`} key={e.id}>
