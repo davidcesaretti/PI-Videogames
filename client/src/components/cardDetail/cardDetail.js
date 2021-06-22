@@ -58,7 +58,9 @@ export default function CardDetail(props) {
             </div>
             <div className='ctn-description'>
                 <h4 className='title-description'>Description</h4>
-                <p className='detailDescription'>{game.description_raw}</p>
+                {!game.mine ? <p className='detailDescription'>{game.description_raw}</p>
+                :
+                <p className='detailDescription'>{game.description}</p>}
             </div>
         </div>
     )
