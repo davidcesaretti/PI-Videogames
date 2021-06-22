@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import Card from '../card/card'
-import {getVideogames, getGenres, filters} from '../../actions/index'
+import {getVideogames, getGenres, filter} from '../../actions/index'
 import './home.css'
 import logo from '../../img/image2.png'
 
@@ -14,17 +14,19 @@ export default function Home () {
     const [orderBy, setOrderBy] = useState('default');
     const [order, setOrder] = useState('ASC');
     const [name, setName] = useState('');
-    const [filter, setFilter] = useState('All')
+    const [filterOrigin, setFilterOrigin] = useState('All')
+    const [filterGenre, setFilterGenre] = useState('All')
     const [currentPage, setCurrentPage] = useState(0);
+    const [phantasm, setPhantasm] = useState('')
 
     useEffect(() => {
         dispatch(getGenres())
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(getVideogames(orderBy, order))
+        dispatch(getVideogames(orderBy, order, phantasm, filterOrigin, filterGenre))
         console.log('despachando')
-    }, [dispatch, orderBy, order])
+    }, [dispatch, orderBy, order, filterOrigin, filterGenre])
 
     const filteredGames = videogames.slice(currentPage, currentPage + 15)
     
@@ -64,16 +66,21 @@ export default function Home () {
         setOrderBy(e.target.value)
     }
 
-    const changeFilter = (e) => {
-        setFilter(e.target.value)
+    const changeFilterOrigin = (e) => {
+        setFilterOrigin(e.target.value)
     }
+
+    const changeFilterGenre = (e) => {
+        setFilterGenre(e.target.value)
+    }
+
 
     return (
         <div className='background'>
                 <div>
-                    <NavLink className='rechargeHome' to='/videogames'>
+                    <a className='rechargeHome' href='http://localhost:3000/videogames'>
                         <img className='logo' src={logo} alt='logo not found' />
-                    </NavLink>
+                    </a>
                 </div>
             <div className='navBar'>
                 <div className='searchBar'>
@@ -107,9 +114,9 @@ export default function Home () {
                 <div className='filter'>
                     <h5 className='orderName'>Filtro origen</h5>
                     <select className='inputOrder' onChange={(e) => {
-                        changeFilter(e)
+                        changeFilterOrigin(e)
                     }}>
-                        <option className='options' value=''>All</option>
+                        <option className='options' value='All'>All</option>
                         <option className='options' value='creados'>Creados</option>
                         <option className='options' value='api'>Api</option>
                     </select>
@@ -117,9 +124,9 @@ export default function Home () {
                 <div className='filter'>
                     <h5 className='orderName'>Filtro genero</h5>
                     <select className='inputOrder' onChange={(e) => {
-                        changeFilter(e)
+                        changeFilterGenre(e)
                     }}>
-                        <option className='options' value=''>All</option>
+                        <option className='options' value='All'>All</option>
                         {dbGenres?.map((e) => (
                             <option className='options' value={e.name}>{`${e.name}`}</option>
                         ))}

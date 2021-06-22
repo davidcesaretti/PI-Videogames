@@ -3,8 +3,7 @@ import {GET_VIDEOGAMES, GET_DETAIL, CREATE_VIDEOGAME, GET_GENRES} from '../actio
 const initialState = {
     videogames: [],
     detail: {},
-    genres: [],
-    created: []
+    genres: []
 }
 
 export function rootReducer(state = initialState, action){

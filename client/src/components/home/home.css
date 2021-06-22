@@ -10,12 +10,11 @@
 .navBar{
     display:flex;
     width:100%;
-    height: 70px;
+    height: 80px;
     align-items: center;
     justify-content: center;
     padding-top: 20px;
-    background: #000000;/* url("https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80");
-    backdrop-filter: blur(50px); */
+    background: #000000;
 }
 .rechargeHome{
     position: relative;
@@ -50,18 +49,22 @@
     border-bottom-right-radius: 20px;
     cursor: pointer;
 }
-.create{
+.createLink{
+    text-decoration: none;
     width: 140px;
     padding:8px;
     position: absolute;
-    top: 30px;
+    top: 35px;
     right: 250px;
     border-radius: 10px;
+    background-color: #000000;
+    color: #FFF;
+    border: solid 1px #FFF
+}
+.createLink:hover{
     background-color: #fff;
     color:#000000;
-}
-.createLink{
-    text-decoration: none;
+    transition: 500ms;
 }
 .ctn-orders{
     display:flex;
@@ -124,34 +127,38 @@ h5{
 .prevButton{
     display: flex;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #000000;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     border: none;
     width: 150px;
     font-size: 50px;
-    color: #000000;
+    color: #FFF;
+    border: solid 1px #fff;
     cursor: pointer;
 }
 .prevButton:hover{
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #FFF;
+    background-color: #FFF;
+    color: #000000;
+    transition: 500ms;
 }
 .nextButton{
     display: flex;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.8);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border: none;
     width: 150px;
     font-size: 50px;
-    color: #000000;
+    background-color: #000000;
+    color: #FFF;
+    border: solid 1px #FFF;
     cursor: pointer;
 }
 .nextButton:hover{
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #FFF;
+    background-color: #FFF;
+    color: #000000;
+    transition: 500ms;
 }
 .cards {
     width: 80%;
