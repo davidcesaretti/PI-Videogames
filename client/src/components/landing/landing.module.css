@@ -31,3 +31,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.button:active{
+    transform: scale(0.9);
+}

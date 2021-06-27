@@ -30,11 +30,14 @@
     color: #FFF;
     border: solid 1px #FFF;
     text-align: center;
+    transition: 500ms;
 }
 .backHome:hover{
     background-color: #fff;
     color:#000000;
-    transition: 500ms;
+}
+.backHome:active{
+    transform: scale(0.9);
 }
 .titleForm{
     color: #FFF;
@@ -88,6 +91,7 @@ span{
     width: 190px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
+    outline: 0;
 }
 .ctnFormDate{
     display: flex;
@@ -122,6 +126,7 @@ span{
     width: 190px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
+    outline: 0;
 }
 .ctnPlatforms{
 width:150px;
@@ -150,7 +155,6 @@ cursor: pointer;
     color: #FFF;
     transition: 500ms;
 }
-
-alert{
-    background-color: red;
+.buttonCreate:active{
+    transform: scale(0.9)
 }

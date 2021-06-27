@@ -19,6 +19,9 @@
     color: #FFF;
     box-shadow: none;
 }
+.card:active{
+    transform: scale(0.9);
+}
 .title {
     display: flex;
     justify-content: center;

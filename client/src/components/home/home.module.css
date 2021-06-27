@@ -36,8 +36,10 @@
     height:25px;
     width: 400px;
     border: none;
+    padding-left: 15px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    outline: 0;
 }
 .buttonSearch{
     height:27px;
@@ -57,12 +59,15 @@
     border-radius: 10px;
     background-color: #000000;
     color: #FFF;
-    border: solid 1px #FFF
+    border: solid 1px #FFF;
+    transition: 500ms;
 }
 .createLink:hover{
     background-color: #fff;
     color:#000000;
-    transition: 500ms;
+}
+.createLink:active{
+    transform: scale(0.9);
 }
 .ctnOrders{
     background: rgb(176,176,176);
@@ -110,6 +115,7 @@ h5{
     align-items: center;
     padding: 10px;
     border: none;
+    outline: 0;
 }
 .options{
     display:flex;
@@ -141,6 +147,9 @@ h5{
     color: #000000;
     transition: 500ms;
 }
+.prevButton:active{
+    transform: scale(0.9);
+}
 .nextButton{
     display: flex;
     justify-content: center;
@@ -158,6 +167,9 @@ h5{
     background-color: #FFF;
     color: #000000;
     transition: 500ms;
+}
+.nextButton:active{
+    transform: scale(0.9);
 }
 .upButton {
     width: 80px;
@@ -200,7 +212,4 @@ h5{
     margin-bottom: 10px;
     margin-right: 50px;
     margin-left: 40px;
-}
-
-.card {
 }

@@ -41,11 +41,15 @@
     text-decoration: none;
     text-align: center;
     border: solid 1px #FFF;
+    transition: 500ms;
 }
 .backHome:hover{
     background-color: #fff;
     color:#000000;
     transition: 500ms;
+}
+.backHome:active{
+    transform: scale(0.9);
 }
 
 .detailImg{

@@ -55,7 +55,16 @@ export default function Home () {
     }
 
     const handleInputChange = (e) => {
-        setName(e.target.value)
+            setName(e.target.value)
+    }
+
+    const pressEnter = (e) => {
+        if(e.key === 'Enter') {
+            setCurrentPage(0)
+            dispatch(getVideogames(orderBy, order, name))
+            setName('')
+        }
+        e.target.reset()
     }
 
     const changeOrder = (e) => {
@@ -77,6 +86,8 @@ export default function Home () {
         setCurrentPage(0)
         setFilterGenre(e.target.value)
     }
+
+    //Boton de ir hacia arriba
 
     const scrollUp = () => {
         let currentScroll = document.documentElement.scrollTop;
@@ -105,17 +116,25 @@ export default function Home () {
                     </a>
                 </div>
             <div className={style.navBar}>
-                <div className={style.searchBar}>
-                    <input className={style.inputSearch} type="text" placeholder="Search" onChange={(e) => {handleInputChange(e)}} />
-                    <button className={style.buttonSearch} onClick={(e) => {handleClick(e)}}>Search</button>
-                </div>
+                <form className={style.searchBar}  onSubmit={(e) => {pressEnter(e)}}>
+                    <input  className={style.inputSearch}
+                            type="text"
+                            value={name}
+                            onChange={(e) => {handleInputChange(e)}}
+                    />
+                    <input  className={style.buttonSearch}
+                            type="submit"
+                            value="Search"
+                            onClick={(e) => {handleClick(e)}}
+                    />
+                </form>
                 <div className={style.create}>
                 <NavLink className={style.createLink} to='/create'>Create videogame</NavLink>
                 </div>
             </div>
             <div className={style.ctnOrders}>
                 <div className={style.orderBy}>
-                    <h5 className={style.orderName}>Ordenar por</h5>
+                    <h5 className={style.orderName}>Order By</h5>
                     <select className={style.inputOrder} onChange={(e) => {
                         changeOrderBy(e)
                     }}>
@@ -125,26 +144,26 @@ export default function Home () {
                     </select>
                 </div>
                 <div className={style.order}>
-                    <h5 className={style.orderName}>De forma</h5>
+                    <h5 className={style.orderName}>In Order</h5>
                     <select className={style.inputOrder} onChange={(e) => {
                         changeOrder(e)
                     }}>
-                        <option className={style.options} value='ASC'>Ascendente</option>
-                        <option className={style.options} value='DESC'>Descendente</option>
+                        <option className={style.options} value='ASC'>Crescent</option>
+                        <option className={style.options} value='DESC'>Decrescent</option>
                     </select>
                 </div>
                 <div className={style.filter}>
-                    <h5 className={style.orderName}>Filtro origen</h5>
+                    <h5 className={style.orderName}>Filter Origin</h5>
                     <select className={style.inputOrder} onChange={(e) => {
                         changeFilterOrigin(e)
                     }}>
                         <option className={style.options} value='All'>All</option>
-                        <option className={style.options} value='creados'>Creados</option>
+                        <option className={style.options} value='creados'>Created</option>
                         <option className={style.options} value='api'>Api</option>
                     </select>
                 </div>
                 <div className={style.filter}>
-                    <h5 className={style.orderName}>Filtro genero</h5>
+                    <h5 className={style.orderName}>Filter Genre</h5>
                     <select className={style.inputOrder} onChange={(e) => {
                         changeFilterGenre(e)
                     }}>
@@ -168,7 +187,7 @@ export default function Home () {
                             ))
             }
             </div>
-            <div className={style.buttonPag}>
+            { videogames.length > 15 ? <div className={style.buttonPag}>
                 {currentPage !== 0 ? <button
                     className={style.prevButton}
                     onClick={ prevPage }
@@ -181,12 +200,12 @@ export default function Home () {
                 >
                     {'>'}
                 </button> : <div></div> }
+            </div> : <div></div> }
                 <div>
                     <button className={style.upButton} id="buttonUp" onClick={ scrollUp }>
                         {'^'}
                     </button>
                 </div>
-            </div>
         </div>
     )
 }
