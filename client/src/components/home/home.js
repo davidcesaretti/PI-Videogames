@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import Card from '../card/card'
 import {getVideogames, getGenres, filter} from '../../actions/index'
-import './home.css'
+import style from './home.module.css'
 import logo from '../../img/image2.png'
 
 export default function Home () {
@@ -59,84 +59,106 @@ export default function Home () {
     }
 
     const changeOrder = (e) => {
+        setCurrentPage(0)
         setOrder(e.target.value)
     }
 
     const changeOrderBy = (e) => {
+        setCurrentPage(0)
         setOrderBy(e.target.value)
     }
 
     const changeFilterOrigin = (e) => {
+        setCurrentPage(0)
         setFilterOrigin(e.target.value)
     }
 
     const changeFilterGenre = (e) => {
+        setCurrentPage(0)
         setFilterGenre(e.target.value)
     }
 
+    const scrollUp = () => {
+        let currentScroll = document.documentElement.scrollTop;
+        if (currentScroll > 0) {
+            window.requestAnimationFrame(scrollUp)
+            window.scrollTo (0, currentScroll - (currentScroll / 10));
+        }
+    }
+
+    const buttonUp = document.getElementById("buttonUp")
+
+    window.onscroll = () => {
+        let scroll = document.documentElement.scrollTop;
+        if (scroll > 700){
+            buttonUp.style.transform = "scale(1)"
+        } else {
+            buttonUp.style.transform = "scale(0)"
+        }
+    }
 
     return (
-        <div className='background'>
+        <div className={style.background}>
                 <div>
-                    <a className='rechargeHome' href='http://localhost:3000/videogames'>
-                        <img className='logo' src={logo} alt='logo not found' />
+                    <a className={style.rechargeHome} href='http://localhost:3000/videogames'>
+                        <img className={style.logo} src={logo} alt='logo not found' />
                     </a>
                 </div>
-            <div className='navBar'>
-                <div className='searchBar'>
-                    <input className='inputSearch' type="text" placeholder="Search" onChange={(e) => {handleInputChange(e)}} />
-                    <button className='buttonSearch' onClick={(e) => {handleClick(e)}}>Search</button>
+            <div className={style.navBar}>
+                <div className={style.searchBar}>
+                    <input className={style.inputSearch} type="text" placeholder="Search" onChange={(e) => {handleInputChange(e)}} />
+                    <button className={style.buttonSearch} onClick={(e) => {handleClick(e)}}>Search</button>
                 </div>
-                <div className='create'>
-                <NavLink className='createLink' to='/create'>Crear Videojuego</NavLink>
+                <div className={style.create}>
+                <NavLink className={style.createLink} to='/create'>Create videogame</NavLink>
                 </div>
             </div>
-            <div className='ctn-orders'>
-                <div className='orderBy'>
-                    <h5 className='orderName'>Ordenar por</h5>
-                    <select className='inputOrder' onChange={(e) => {
+            <div className={style.ctnOrders}>
+                <div className={style.orderBy}>
+                    <h5 className={style.orderName}>Ordenar por</h5>
+                    <select className={style.inputOrder} onChange={(e) => {
                         changeOrderBy(e)
                     }}>
-                        <option className='options' value='default'>Default</option>
-                        <option className='options' value='name'>Name</option>
-                        <option className='options' value='rating'>Rating</option>
+                        <option className={style.options} value='default'>Default</option>
+                        <option className={style.options} value='name'>Name</option>
+                        <option className={style.options} value='rating'>Rating</option>
                     </select>
                 </div>
-                <div className='order'>
-                    <h5 className='orderName'>De forma</h5>
-                    <select className='inputOrder' onChange={(e) => {
+                <div className={style.order}>
+                    <h5 className={style.orderName}>De forma</h5>
+                    <select className={style.inputOrder} onChange={(e) => {
                         changeOrder(e)
                     }}>
-                        <option className='options' value='ASC'>Ascendente</option>
-                        <option className='options' value='DESC'>Descendente</option>
+                        <option className={style.options} value='ASC'>Ascendente</option>
+                        <option className={style.options} value='DESC'>Descendente</option>
                     </select>
                 </div>
-                <div className='filter'>
-                    <h5 className='orderName'>Filtro origen</h5>
-                    <select className='inputOrder' onChange={(e) => {
+                <div className={style.filter}>
+                    <h5 className={style.orderName}>Filtro origen</h5>
+                    <select className={style.inputOrder} onChange={(e) => {
                         changeFilterOrigin(e)
                     }}>
-                        <option className='options' value='All'>All</option>
-                        <option className='options' value='creados'>Creados</option>
-                        <option className='options' value='api'>Api</option>
+                        <option className={style.options} value='All'>All</option>
+                        <option className={style.options} value='creados'>Creados</option>
+                        <option className={style.options} value='api'>Api</option>
                     </select>
                 </div>
-                <div className='filter'>
-                    <h5 className='orderName'>Filtro genero</h5>
-                    <select className='inputOrder' onChange={(e) => {
+                <div className={style.filter}>
+                    <h5 className={style.orderName}>Filtro genero</h5>
+                    <select className={style.inputOrder} onChange={(e) => {
                         changeFilterGenre(e)
                     }}>
-                        <option className='options' value='All'>All</option>
+                        <option className={style.options} value='All'>All</option>
                         {dbGenres?.map((e) => (
-                            <option className='options' value={e.name}>{`${e.name}`}</option>
+                            <option className={style.options} value={e.name}>{`${e.name}`}</option>
                         ))}
                     </select>
                 </div>
             </div>
-            <div className='cards'>
+            <div className={style.cards}>
             {filteredGames?.map((e) => (
-                            <NavLink className='link' to={`/videogames/${e.id}`} key={e.id}>
-                                <Card className='card'
+                            <NavLink className={style.link} to={`/videogames/${e.id}`} key={e.id}>
+                                <Card className={style.card}
                                     name={e.name}
                                     image={e.image}
                                     genre={e.genre}
@@ -146,19 +168,24 @@ export default function Home () {
                             ))
             }
             </div>
-            <div className='buttonPag'>
-                <button
-                    className='prevButton'
+            <div className={style.buttonPag}>
+                {currentPage !== 0 ? <button
+                    className={style.prevButton}
                     onClick={ prevPage }
                 >
                     {'<'}
-                </button>
-                <button
-                    className='nextButton'
+                </button> : <div></div>}
+                {currentPage !== 90 ? <button
+                    className={style.nextButton}
                     onClick={ nextPage }
                 >
                     {'>'}
-                </button>
+                </button> : <div></div> }
+                <div>
+                    <button className={style.upButton} id="buttonUp" onClick={ scrollUp }>
+                        {'^'}
+                    </button>
+                </div>
             </div>
         </div>
     )

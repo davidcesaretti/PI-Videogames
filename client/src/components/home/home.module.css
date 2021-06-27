@@ -2,10 +2,8 @@
 .background {
     width: 100%;
     height: 100%;
-    /* background: url('https://i.pinimg.com/originals/66/c4/6f/66c46f0b10f5a1b9cb2c4e49f19b5a17.jpg')
-    center no-repeat; */
     background: rgb(0,0,0);
-    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(23,23,23,1) 23%, rgba(184,184,184,1) 52%, rgba(0,0,0,1) 81%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(176,176,176,1) 100%);
 }
 .navBar{
     display:flex;
@@ -51,7 +49,7 @@
 }
 .createLink{
     text-decoration: none;
-    width: 140px;
+    width: 152px;
     padding:8px;
     position: absolute;
     top: 35px;
@@ -66,7 +64,9 @@
     color:#000000;
     transition: 500ms;
 }
-.ctn-orders{
+.ctnOrders{
+    background: rgb(176,176,176);
+    background: linear-gradient(0deg, rgba(176,176,176,1) 10%, rgba(0,0,0,1) 100%);
     display:flex;
     align-items: center;
     justify-content: center;
@@ -158,6 +158,28 @@ h5{
     background-color: #FFF;
     color: #000000;
     transition: 500ms;
+}
+.upButton {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50% ;
+    cursor: pointer;
+    position: fixed;
+    bottom: 30px;
+    right: 50px;
+    color: #fff;
+    border: solid 1px white;
+    background: #000000;
+    font-size: 40px;
+    transition: all 300ms ease;
+    transform: scale(0)
+}
+.upButton:hover {
+    background: #FFF;
+    color: #000000;
 }
 .cards {
     width: 80%;

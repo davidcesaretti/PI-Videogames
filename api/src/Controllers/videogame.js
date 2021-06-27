@@ -1,7 +1,7 @@
 const { Videogame, Genre, VideoGenre } = require('../db');
 const axios = require('axios');
-const {Op} = require('sequelize');
-const {BASE_URL, API_KEY} = process.env
+const { Op } = require('sequelize');
+const { BASE_URL, API_KEY } = process.env
 
 
 const getVideogames = async (req, res) => {
@@ -13,7 +13,7 @@ const getVideogames = async (req, res) => {
             let videogames = await Videogame.findAll({
                 where: {
                     name: {
-                        [Op.like]: '%'+game+'%'.toLocaleLowerCase()
+                        [Op.like]: '%' + game + '%'.toLocaleLowerCase()
                     }
                 },
                 include: {
@@ -29,7 +29,7 @@ const getVideogames = async (req, res) => {
             console.log(error)
         }
     } else {
-        try{
+        try {
             let videogames = await Videogame.findAll({
                 attributes: {
                     exclude: ['createdAt', 'updatedAt', 'api']
@@ -68,31 +68,31 @@ const getById = async (req, res) => {
 }
 
 const getGenres = async (req, res) => {
-    try{
+    try {
         const genres = await Genre.findAll()
         res.send(genres)
     } catch (error) {
         console.log(error)
-}
+    }
 }
 
 const postVideogame = async (req, res) => {
     console.log("BODY EN BACK", req.body);
     const { name, rating, platforms, description, image, genres, release_date } = req.body;
-    try{
+    try {
         console.log(release_date)
         let dbGame = await Videogame.create({
-                name: name,
-                description: description,
-                image: image,
-                rating: rating,
-                platforms: platforms,
-                release_date: release_date,
-                mine: true,
+            name: name,
+            description: description,
+            image: image,
+            rating: rating,
+            platforms: platforms,
+            release_date: release_date,
+            mine: true,
         })
         await dbGame.setGenres(genres)
         return res.json(dbGame)
-    } catch (error){
+    } catch (error) {
         console.log(error)
     }
 }

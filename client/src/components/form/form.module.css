@@ -1,7 +1,7 @@
-.ctn-body-form{
+.ctnBodyForm{
     background-color: rgba(204, 204, 204, 0.808);
 }
-.navBar-form{
+.navBarForm{
     display:flex;
     width:100%;
     height: 90px;
@@ -10,7 +10,7 @@
     padding-top: 20px;
     background: #000000;
 }
-.logo-form{
+.logoForm{
     position: absolute;
     height:80px;
     width:80px;
@@ -18,10 +18,28 @@
     top: 20px;
     border-radius: 40px;
 }
-.title-form{
+.backHome{
+    text-decoration: none;
+    width: 140px;
+    padding:8px;
+    position: absolute;
+    top: 43px;
+    right: 80px;
+    border-radius: 10px;
+    background-color: #000000;
+    color: #FFF;
+    border: solid 1px #FFF;
+    text-align: center;
+}
+.backHome:hover{
+    background-color: #fff;
+    color:#000000;
+    transition: 500ms;
+}
+.titleForm{
     color: #FFF;
 }
-.body-form{
+.bodyForm{
     padding:30px;
 }
 span{
@@ -29,22 +47,22 @@ span{
     font-size: 15px;
     font-weight: bold;
 }
-.form-sonic{
+.formSonic{
     height:550px;
     display:flex;
     align-items: center;
     justify-content: center;
 }
-.ctn-inputs{
+.ctnInputs{
     padding:10px;
     height:480px;
     margin-left: 100px;
     margin-right: 150px;
 }
-.ctn-form{
+.ctnForm{
     padding:10px;
 }
-.option-form{
+.optionForm{
     border: solid 1px #fff;
     border-radius: 15px;
     width: 355px;
@@ -53,7 +71,7 @@ span{
     align-items: center;
     height: 47px;
 }
-.label-form{
+.labelForm{
     background-color: #fff;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
@@ -65,18 +83,19 @@ span{
     align-items: center;
     padding-left: 10px;
 }
-.input-form{
-    height: 40px;
+.inputForm{
+    height: 45px;
+    width: 190px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
-.ctn.form.date{
+.ctnFormDate{
     display: flex;
     justify-content: center;
     align-items: center;
     padding:10px;
 }
-.option-form-date{
+.optionFormDate{
     border: solid 1px #fff;
     border-radius: 15px;
     width: 355px;
@@ -85,9 +104,8 @@ span{
     align-items: center;
     padding: 0px;
     height: 47px;
-    margin-left:10px;
 }
-.label-form-date{
+.labelFormDate{
     background-color: #fff;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
@@ -99,52 +117,40 @@ span{
     align-items: center;
     padding-left: 10px;
 }
-.input-form-date{
+.inputFormDate{
     height: 45px;
     width: 190px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
-.ctn-platforms{
+.ctnPlatforms{
 width:150px;
-height: 500px;
+height: 540px;
 }
-.title-platforms{
-
-}
-.ctn-box-platforms{
-
-}
-.checkbox-platforms{
-
-}
-.label-platforms{
-
-}
-.ctn-genres{
-display: inline;
-}
-.title-genres{
+.titlePlatforms{
 font-size: 28px;
 }
-.ctn-box-genres{
+.ctnGenres{
+display: inline;
 }
-.checkbox-genres{
-
+.titleGenres{
+font-size: 28px;
 }
-.label-genres{
-
-}
-.button-create{
+.buttonCreate{
 padding:10px;
 border: solid 1px #000000;
 border-radius: 10px;
 margin-left: 125px;
 margin-top: 40px;
+cursor: pointer;
 }
-.button-create:hover{
+.buttonCreate:hover{
     background-color: #000000;
     border: solid 1px #FFF;
     color: #FFF;
     transition: 500ms;
+}
+
+alert{
+    background-color: red;
 }
